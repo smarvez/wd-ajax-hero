@@ -1,7 +1,7 @@
 $(document).ready(function() {
   'use strict';
 
-  const movies = [];
+  var movies = [];
 
   const renderMovies = function() {
     $('#listings').empty();
@@ -59,10 +59,12 @@ $(document).ready(function() {
   // ADD YOUR CODE HERE
 
   $('button').on('click', function(event) {
-    let input = $('#search').val();
     event.preventDefault();
+    movies = [];
+    let input = $('#search').val();
+    // $('#search').val('');
 
-    // console.log(input);
+    console.log(input);
     if (input === '') {
       alert("Please enter a valid movie name");
     }
@@ -74,7 +76,7 @@ $(document).ready(function() {
         if ($xhr.status !== 200) {
           return;
         }
-        // console.log(data);
+        console.log(data);
         for (let i = 0; i < data.Search.length; i++){
           let obj = {
             'id' : data.Search[i].imdbID,
@@ -87,7 +89,7 @@ $(document).ready(function() {
 }
 return renderMovies();
       })
-      // console.log(movies);
-    $('#search').val('');
+      console.log(movies);
+    // $('#search').val('');
   })
 });
